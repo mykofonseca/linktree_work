@@ -4,472 +4,423 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CarePlus Predict — Links</title>
+<meta name="description" content="CarePlus Predict: assista à apresentação, concorra a uma premiação e conheça o produto.">
+<meta name="theme-color" content="#0B2A3C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── PALETA CARE PLUS ──
+     Ajuste aqui se a identidade oficial usar outros tons. */
   :root {
-    --bg:       #121212;
-    --surface:  #1c1c1c;
-    --surface2: #242424;
-    --accent:   #FF0060;
-    --accent2:  #ff3380;
-    --text:     #ffffff;
-    --muted:    #888888;
-    --border:   rgba(255,255,255,0.08);
+    --navy:      #0B2A3C;   /* texto, vídeo, destaques escuros */
+    --teal:      #00A59B;   /* cor de marca (ícones, detalhes) */
+    --teal-deep: #007F78;   /* botão principal (contraste AA com branco) */
+    --mint:      #E3F5F2;   /* superfícies suaves */
+    --paper:     #F6FAF9;   /* fundo da página */
+    --white:     #ffffff;
+    --muted:     #4F6B73;
+    --line:      #CFE3E0;
+    --radius:    16px;
   }
 
-  html, body {
-    min-height: 100vh;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
+  html { background: var(--paper); }
 
   body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 48px 24px 80px;
+    min-height: 100vh;
+    color: var(--navy);
+    font-family: 'Figtree', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 20px 72px;
   }
 
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 0;
+  a { color: inherit; text-decoration: none; }
+
+  a:focus-visible,
+  video:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 3px;
   }
 
-  /* ── ACCENT GLOW ── */
-  .glow-blob {
-    position: fixed;
-    top: -160px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
-    background: radial-gradient(ellipse at center, rgba(255,0,96,0.18) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
+  .page {
     width: 100%;
-    max-width: 520px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
+    max-width: 720px;
+    margin: 0 auto;
   }
 
-  /* ── LOGO ── */
-  .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 32px;
+  /* ── TOPO ── */
+  .topbar {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 0 8px;
   }
 
-  .logo-sep {
-    width: 28px;
-    height: 2px;
-    background: var(--accent);
-    display: inline-block;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    text-align: center;
-    margin-bottom: 12px;
-  }
-
-  .project-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: clamp(42px, 10vw, 64px);
-    line-height: 0.95;
-    text-transform: uppercase;
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
     letter-spacing: -0.01em;
   }
 
-  .project-name .highlight {
-    color: var(--accent);
-    display: block;
-  }
-
-  .project-name .sub {
-    color: var(--text);
-    display: block;
-  }
-
-  .project-tagline {
-    margin-top: 14px;
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    margin: 32px 0;
+  .plus-mark {
     position: relative;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
   }
-
-  .divider::after {
+  .plus-mark::before,
+  .plus-mark::after {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-
-  /* ── SECTION LABEL ── */
-  .section-label {
-    width: 100%;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── LINK CARDS ── */
-  .links-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 32px;
-  }
-
-  .link-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-decoration: none;
-    color: var(--text);
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, transform 0.12s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .link-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-
-  .link-card:hover {
-    background: var(--surface2);
-    border-color: rgba(255,0,96,0.3);
-    transform: translateX(4px);
-  }
-
-  .link-card:hover::before {
-    opacity: 1;
-  }
-
-  .link-icon {
-    width: 36px;
-    height: 36px;
+    background: var(--teal);
     border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
   }
+  .plus-mark::before { left: 10px; top: 0; width: 6px; height: 26px; }
+  .plus-mark::after  { left: 0; top: 10px; width: 26px; height: 6px; }
 
-  .link-icon.li {
-    background: rgba(10, 102, 194, 0.15);
-    border: 1px solid rgba(10, 102, 194, 0.25);
-  }
-
-  .link-icon.gh {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-  }
-
-  .link-icon svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  .link-text {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .link-name {
-    font-weight: 700;
+  .school {
     font-size: 14px;
-    line-height: 1.3;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .link-desc {
-    font-size: 12px;
+    font-weight: 600;
     color: var(--muted);
-    margin-top: 2px;
+    background: var(--mint);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 12px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .link-arrow {
+  /* ── HERO ── */
+  .hero { padding: 36px 0 28px; }
+
+  .hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 9vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .hero p {
+    margin-top: 14px;
+    max-width: 46ch;
+    font-size: 18px;
     color: var(--muted);
-    flex-shrink: 0;
-    transition: color 0.15s, transform 0.15s;
   }
 
-  .link-card:hover .link-arrow {
-    color: var(--accent);
-    transform: translateX(3px);
+  /* ── VÍDEO (vertical 9:16) ── */
+  .video-frame {
+    width: min(100%, 360px);
+    margin: 0 auto 44px;
+    background: var(--navy);
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: 10px 10px 0 var(--teal);
   }
 
-  /* ── TEAM BADGE ── */
-  .team-badge {
+  .video-frame video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    object-fit: contain;
+    background: #000;
+    border-radius: 13px;
+  }
+
+  /* ── LINKS PRINCIPAIS ── */
+  .actions {
+    display: grid;
+    gap: 14px;
+  }
+
+  .action {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px 6px 8px;
-    background: rgba(255,0,96,0.08);
-    border: 1px solid rgba(255,0,96,0.2);
-    border-radius: 100px;
-    margin-bottom: 32px;
+    gap: 18px;
+    padding: 22px 24px;
+    border-radius: var(--radius);
+    border: 2px solid var(--navy);
+    background: var(--white);
+    color: var(--navy);
+    transition: transform .15s ease, background .15s ease;
   }
 
-  .team-badge-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
+  .action:hover { transform: translateY(-2px); }
+
+  .action.primary {
+    background: var(--teal-deep);
+    border-color: var(--teal-deep);
+    color: var(--white);
   }
 
-  .team-badge span {
-    font-size: 11px;
+  .action.primary:hover { background: #006C66; }
+  .action.secondary:hover { background: var(--mint); }
+
+  .action-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--mint);
+    color: var(--teal-deep);
+  }
+
+  .action.primary .action-icon {
+    background: rgba(255,255,255,.16);
+    color: var(--white);
+  }
+
+  .action-icon svg { width: 26px; height: 26px; }
+
+  .action-text { flex: 1; min-width: 0; }
+
+  .action-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .action-desc {
+    margin-top: 4px;
+    font-size: 15px;
+    opacity: .85;
+  }
+
+  .action-chevron { width: 22px; height: 22px; flex-shrink: 0; }
+
+  /* ── EQUIPE ── */
+  .team { margin-top: 56px; }
+
+  .team h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .team > p { color: var(--muted); font-size: 15px; margin-bottom: 18px; }
+
+  .group-title {
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
+    font-size: 15px;
+    margin: 22px 0 6px;
+    color: var(--teal-deep);
   }
 
-  /* ── FOOTER ── */
+  .rows { border-top: 1px solid var(--line); }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+    transition: background .15s ease;
+  }
+
+  .row:hover { background: var(--mint); }
+
+  .row svg.brand-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--teal-deep); }
+
+  .row-name { font-weight: 600; font-size: 16px; flex: 1; min-width: 0; }
+
+  .row-handle {
+    font-size: 14px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48%;
+  }
+
+  /* ── RODAPÉ ── */
   .footer {
-    margin-top: 40px;
-    text-align: center;
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
   }
 
-  .footer-logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    font-size: 18px;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.15);
-    text-transform: uppercase;
+  /* ── PAISAGEM (desktop): conteúdo rolável à esquerda, vídeo fixo à direita ── */
+  @media (min-width: 960px) and (orientation: landscape) {
+    .page {
+      max-width: 1120px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 72px;
+      align-items: start;
+    }
+
+    .page > * { grid-column: 1; }
+
+    .page > .video-frame {
+      grid-column: 2;
+      grid-row: 1 / span 5;
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      width: fit-content;
+      margin: 24px 10px 0 0;
+    }
+
+    .video-frame video {
+      width: auto;
+      height: min(calc(100vh - 80px), 900px);
+    }
+
+    .footer { margin-top: 56px; }
   }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* ── MOBILE ── */
+  @media (max-width: 520px) {
+    .school { display: none; }
+    .video-frame { box-shadow: 6px 6px 0 var(--teal); padding: 6px; border-radius: 16px; }
+    .video-frame video { border-radius: 11px; }
+    .action { padding: 18px; gap: 14px; }
+    .action-icon { width: 46px; height: 46px; }
+    .action-title { font-size: 20px; }
+    .row-handle { display: none; }
   }
 
-  .logo        { animation: fadeUp 0.4s ease both; animation-delay: 0.05s; }
-  .team-badge  { animation: fadeUp 0.4s ease both; animation-delay: 0.1s; }
-  .hero        { animation: fadeUp 0.4s ease both; animation-delay: 0.15s; }
-  .divider     { animation: fadeUp 0.4s ease both; animation-delay: 0.2s; }
+  /* ── ENTRADA (um único momento) ── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+  }
 
-  .links-group:nth-of-type(1) .link-card:nth-child(1) { animation: fadeUp 0.4s ease both; animation-delay: 0.25s; }
-  .links-group:nth-of-type(1) .link-card:nth-child(2) { animation: fadeUp 0.4s ease both; animation-delay: 0.30s; }
-  .links-group:nth-of-type(1) .link-card:nth-child(3) { animation: fadeUp 0.4s ease both; animation-delay: 0.35s; }
-  .links-group:nth-of-type(1) .link-card:nth-child(4) { animation: fadeUp 0.4s ease both; animation-delay: 0.40s; }
-  .links-group:nth-of-type(2) .link-card:nth-child(1) { animation: fadeUp 0.4s ease both; animation-delay: 0.45s; }
-  .links-group:nth-of-type(2) .link-card:nth-child(2) { animation: fadeUp 0.4s ease both; animation-delay: 0.50s; }
+  .hero, .video-frame { animation: rise .5s ease both; }
+  .video-frame { animation-delay: .1s; }
 
-  .section-label:nth-of-type(1) { animation: fadeUp 0.4s ease both; animation-delay: 0.22s; }
-  .section-label:nth-of-type(2) { animation: fadeUp 0.4s ease both; animation-delay: 0.42s; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero, .video-frame { animation: none; }
+    .action, .row { transition: none; }
+    .action:hover { transform: none; }
+  }
 </style>
 </head>
 <body>
 
-<div class="glow-blob"></div>
+<main class="page">
 
-<div class="container">
+  <header class="topbar">
+    <div class="brand">
+      <span class="plus-mark" aria-hidden="true"></span>
+      <span>CarePlus Predict</span>
+    </div>
+    <span class="school">FIAP · Turma 1CCPS</span>
+  </header>
 
-  <div class="logo">
-    <span class="logo-sep"></span>
-    FIAP — Turma 1CCPS
-    <span class="logo-sep"></span>
+  <section class="hero">
+    <h1>Saúde que se antecipa ao risco.</h1>
+    <p>Assista à apresentação do CarePlus Predict, a plataforma de predição em saúde do projeto FIAP × Care Plus.</p>
+  </section>
+
+  <!-- Vídeo de apresentação (deixe o arquivo na mesma pasta do index.html) -->
+  <div class="video-frame">
+    <video controls playsinline preload="metadata" aria-label="Vídeo de apresentação do CarePlus Predict">
+      <source src="careplusapresenta%C3%A7%C3%A3o.mp4" type="video/mp4">
+      Seu navegador não reproduz este vídeo.
+    </video>
   </div>
 
-  <div class="team-badge">
-    <div class="team-badge-dot"></div>
-    <span>CarePlus Predict · New Gen</span>
-  </div>
+  <!-- Links de acesso -->
+  <nav class="actions" aria-label="Links principais">
 
-  <div class="hero">
-    <h1 class="project-name">
-      <span class="sub">Care</span>
-      <span class="highlight">Plus</span>
-      <span class="sub" style="font-size: 0.55em; letter-spacing: 0.06em; color: var(--muted); display: block; margin-top: 6px;">PREDICT</span>
-    </h1>
-    <p class="project-tagline">Plataforma de Predição em Saúde · FIAP × Care Plus</p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- LinkedIn -->
-  <div class="section-label">Equipe — LinkedIn</div>
-
-  <div class="links-group">
-
-    <a class="link-card" href="https://www.linkedin.com/in/maykon-fonseca" target="_blank" rel="noopener">
-      <div class="link-icon li">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="2" y="9" width="4" height="12" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">Maykon Fonseca</div>
-        <div class="link-desc">linkedin.com/in/maykon-fonseca</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a class="action primary" href="https://forms.gle/DCAfj6nk5d684D119" target="_blank" rel="noopener">
+      <span class="action-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg>
+      </span>
+      <span class="action-text">
+        <span class="action-title">Concorra a uma premiação</span>
+        <span class="action-desc" style="display:block">Preencha o formulário e participe.</span>
+      </span>
+      <svg class="action-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
 
-    <a class="link-card" href="https://www.linkedin.com/in/lincoln-pereira-718b4614/" target="_blank" rel="noopener">
-      <div class="link-icon li">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="2" y="9" width="4" height="12" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">Lincoln Simão Pereira</div>
-        <div class="link-desc">linkedin.com/in/lincoln-pereira</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a class="action secondary" href="https://careplus-predict.netlify.app/" target="_blank" rel="noopener">
+      <span class="action-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M10 9.5v4l3.5-2-3.5-2zM8 21h8"/></svg>
+      </span>
+      <span class="action-text">
+        <span class="action-title">Conheça o produto</span>
+        <span class="action-desc" style="display:block">Página de apresentação do CarePlus Predict.</span>
+      </span>
+      <svg class="action-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
     </a>
 
-    <a class="link-card" href="https://www.linkedin.com/in/gustavo-franzoti-452489345/" target="_blank" rel="noopener">
-      <div class="link-icon li">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="2" y="9" width="4" height="12" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">Gustavo Franzotti Gonçalves</div>
-        <div class="link-desc">linkedin.com/in/gustavo-franzoti</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+  </nav>
 
-    <a class="link-card" href="https://www.linkedin.com/in/nicolas-sakaue-nishimura-38790237b/" target="_blank" rel="noopener">
-      <div class="link-icon li">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="2" y="9" width="4" height="12" stroke="#0A66C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="4" cy="4" r="2" stroke="#0A66C2" stroke-width="1.8"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">Nicolas Sakaue Nishimura</div>
-        <div class="link-desc">linkedin.com/in/nicolas-sakaue-nishimura</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+  <!-- Equipe -->
+  <section class="team">
+    <h2>Quem construiu o projeto</h2>
+    <p>Conheça a equipe e os repositórios.</p>
 
-  </div>
+    <div class="group-title">LinkedIn</div>
+    <div class="rows">
 
-  <!-- GitHub -->
-  <div class="section-label">Repositórios — GitHub</div>
+      <a class="row" href="https://www.linkedin.com/in/maykon-fonseca" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.12V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75z"/></svg>
+        <span class="row-name">Maykon Fonseca</span>
+        <span class="row-handle">linkedin.com/in/maykon-fonseca</span>
+      </a>
 
-  <div class="links-group">
+      <a class="row" href="https://www.linkedin.com/in/lincoln-pereira-718b4614/" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.12V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75z"/></svg>
+        <span class="row-name">Lincoln Simão Pereira</span>
+        <span class="row-handle">linkedin.com/in/lincoln-pereira</span>
+      </a>
 
-    <a class="link-card" href="https://github.com/mykofonseca/careplus_predict" target="_blank" rel="noopener">
-      <div class="link-icon gh">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">careplus_predict</div>
-        <div class="link-desc">github.com/mykofonseca · Plataforma de Predição</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+      <a class="row" href="https://www.linkedin.com/in/gustavo-franzoti-452489345/" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.12V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75z"/></svg>
+        <span class="row-name">Gustavo Franzotti Gonçalves</span>
+        <span class="row-handle">linkedin.com/in/gustavo-franzoti</span>
+      </a>
 
-    <a class="link-card" href="https://github.com/lincoln743/bluadiagnostics" target="_blank" rel="noopener">
-      <div class="link-icon gh">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="rgba(255,255,255,0.7)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="link-text">
-        <div class="link-name">bluadiagnostics</div>
-        <div class="link-desc">github.com/lincoln743 · Diagnóstico Inteligente</div>
-      </div>
-      <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+      <a class="row" href="https://www.linkedin.com/in/nicolas-sakaue-nishimura-38790237b/" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3V9.75zm6.5 0h3.83v1.54h.06c.53-1 1.84-2.04 3.78-2.04 4.04 0 4.78 2.66 4.78 6.12V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.59V21h-4V9.75z"/></svg>
+        <span class="row-name">Nicolas Sakaue Nishimura</span>
+        <span class="row-handle">linkedin.com/in/nicolas-sakaue-nishimura</span>
+      </a>
 
-  </div>
+    </div>
 
-  <div class="footer">
-    <div class="footer-logo">FIAP</div>
-  </div>
+    <div class="group-title">GitHub</div>
+    <div class="rows">
 
-</div>
+      <a class="row" href="https://github.com/mykofonseca/careplus_predict" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <span class="row-name">careplus_predict</span>
+        <span class="row-handle">github.com/mykofonseca</span>
+      </a>
+
+      <a class="row" href="https://github.com/lincoln743/bluadiagnostics" target="_blank" rel="noopener">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <span class="row-name">bluadiagnostics</span>
+        <span class="row-handle">github.com/lincoln743</span>
+      </a>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    FIAP × Care Plus · Projeto CarePlus Predict
+  </footer>
+
+</main>
+
 </body>
 </html>
